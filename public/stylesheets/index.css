@@ -1,18 +1,28 @@
+/* https://colorhunt.co/palette/1a1a402700827a0bc0fa58b6 */
+
+:root{
+--noir : #1A1A40;
+--bleu_fonce : #270082;
+--violet : #7A0BC0;
+}
+
+
 body {
     margin: 0;
     padding-bottom: 3rem;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--noir);
 }
 
 #form {
-    background: rgba(0, 0, 0, 0.15);
+    background: var(--bleu_fonce);
     padding: 0.25rem;
     position: fixed;
     bottom: 0;
     left: 0;
     right: 0;
     display: flex;
-    height: 3rem;
+    height: 8vh;
     box-sizing: border-box;
     backdrop-filter: blur(10px);
 }
@@ -23,20 +33,25 @@ body {
     flex-grow: 1;
     border-radius: 2rem;
     margin: 0.25rem;
+    
 }
 
 #input:focus {
     outline: none;
 }
 
-#form>button {
-    background: #333;
+#form_button {
+    background: #7A0BC0;
     border: none;
     padding: 0 1rem;
-    margin: 0.25rem;
+    margin: 0.9rem;
     border-radius: 3px;
     outline: none;
     color: #fff;
+}
+#form>button:hover {
+    background: #9823e0;
+    
 }
 
 #messages {
@@ -50,5 +65,48 @@ body {
 }
 
 #messages>li:nth-child(odd) {
-    background: #efefef;
+    background: #efefefC0;
 }
+
+#messages>li:nth-child(even) {
+    background: #efefef30;
+    color: white;
+}
+
+/*login*/
+
+#header_login {
+    background: #270082;
+    padding: 0.25rem;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    height: 10vh;
+    box-sizing: border-box;
+    backdrop-filter: blur(10px);
+}
+
+#header_login>button {
+    background: #7A0BC0;
+    border: none;
+    padding: 0 1rem;
+    margin: 0.7rem;
+    border-radius: 3px;
+    outline: none;
+    color: #fff;
+}
+
+#header_login>button:hover {
+    background: #9823e0;
+    
+}
+
+.input {
+    border: none;
+    padding: 0 1rem;
+    flex-grow: 1;
+    border-radius: 2rem;
+    margin: 0.9rem;
+}
+
