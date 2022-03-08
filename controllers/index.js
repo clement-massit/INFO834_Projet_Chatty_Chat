@@ -12,7 +12,10 @@ function signin(req, res) {
 		if (err)
 			throw err;
 
+		console.log(req.session);
+		console.log(req.body);
 		if (user.comparePassword(req.body.password)) {
+			
             req.session.username = req.body.account;
 			req.session.logged = true;
 			res.status(200).json({token: createToken(user)});
@@ -35,7 +38,7 @@ function signup(req, res) {
 		if (err)
 			throw err;
 
-		res.redirect('/');
+		res.redirect('/connected');
 
 	});
 }

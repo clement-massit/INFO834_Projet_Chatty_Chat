@@ -77,14 +77,18 @@ body {
 
 #header_login {
     background: #270082;
-    padding: 0.25rem;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    display: flex;
-    height: 10vh;
+    width: 50vw;
+    height: 50vh;
+    padding: 5vh;
+    border-radius: 5vw;
+
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 25% 25% 25% 25%;
+
     box-sizing: border-box;
     backdrop-filter: blur(10px);
+    
 }
 
 #header_login>button {
@@ -110,3 +114,31 @@ body {
     margin: 0.9rem;
 }
 
+
+.grid_container {
+    
+}
+
+#input_login {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 2;
+  grid-row-end: 3;
+}
+
+#input_password {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 3;
+    grid-row-end: 4;
+  }
+
+#title {
+    grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  font-size: 5vh;
+  text-align: center;
+  Color: #fff;
+}

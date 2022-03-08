@@ -16,7 +16,7 @@ let mongoose = require('mongoose');
 let session = require('express-session');
 
 //sessions are stored into MongoDB
-let MongoStore = require('connect-mongodb-session')(session);
+const MongoStore = require('connect-mongodb-session')(session)
 
 let cors = require('cors');
 
