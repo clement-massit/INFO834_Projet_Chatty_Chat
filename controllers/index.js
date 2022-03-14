@@ -23,7 +23,7 @@ function signin(req, res) {
 			console.log(req.session);
 			req.session.username = req.body.account;
 			req.session.logged = true;
-			res.redirect("/connected");
+			res.redirect("/profile");
 		}
 		else
 			res.redirect('/accueil');
@@ -61,14 +61,11 @@ function profile(req, res) {
 	console.log("COUCOU")
 
 	if (req.session.logged)
-		res.render(__dirname + '/view/connected.html');
+		res.redirect("/connected");
 	else
 		res.redirect('/accueil');
 
 }
-
-
-
 
 module.exports.signin = signin;
 module.exports.signup = signup;
