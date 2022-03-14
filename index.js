@@ -44,8 +44,20 @@ app.use(bodyParser.urlencoded({
   
   }));
 
+app.use(session({
+
+    resave: true,
+    saveUninitialized: true,
+    secret: 'mySecretKey',
+    store: new MongoStore({ url: 'mongodb://localhost:27017/auth', autoReconnect: true})
+  
+  }));
+
 app.get('/accueil', (req, res) => {
     res.sendFile(__dirname + '/view/accueil.html');
+});
+app.get('/connected', (req, res) => {
+    res.sendFile(__dirname + '/view/connected.html');
 });
 
 let routes = require("./routes");
@@ -54,8 +66,6 @@ const message = require('./models/message');
 
 app.use(routes);
 
-
-  
 app.use(bodyParser.json());
 
 //connects to the MongoDB database
@@ -74,14 +84,7 @@ mongoose.connect('mongodb://localhost:27017/auth', (err) => {
 
 });
 
-app.use(session({
 
-    resave: true,
-    saveUninitialized: true,
-    secret: 'mySecretKey',
-    store: new MongoStore({ url: 'mongodb://localhost:27017/auth', autoReconnect: true})
-  
-  }));
 
   var opts = {}
   opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
