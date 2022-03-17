@@ -11,11 +11,8 @@
 <body>
     
     <div class="container">
+        
         <form class="grid_container" id="header_login" action="/signup" method = "post">
-            <script>
-                const queryString = window.location.search;
-                console.log(queryString);
-            </script>
             <a id="title">Chatty-Chat</a>
             <input class="input" name="account" id="input_login" autocomplete="off" placeholder="Username"/>
             <input class="input" name="password" id="input_password" autocomplete="off" placeholder="Password" type="password"/>
@@ -23,6 +20,15 @@
             <input id="form_button" formaction="/signup" type="submit" value="S'inscrire"/>
         </form>
     </div>
-    <a href="/profile">aaa</a>
+
+    <script>
+        const queryString = window.location.search;
+        if (queryString == "?failed_user") {
+            alert("User does not exist");
+        }
+        if (queryString == "?failed_password") {
+            alert("Password is incorrect");
+        }
+    </script> 
 </body>
 </html>

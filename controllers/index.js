@@ -1,4 +1,30 @@
 const jwt = require('jsonwebtoken');
+var redis = require('redis');
+let client = redis.createClient(); //creates a new client
+
+client.on('error', (err) => console.log('Redis Client Error', err));
+
+async function connect() {
+	await client.connect();
+	console.log('Connected to Redis');
+}
+
+connect();
+
+async function set(key, value) {
+    await client.set(key, value);
+}
+
+async function get(key) {
+    const value = await client.get('key');
+    console.log(value);
+}
+
+async function increment(key){
+	await client.incr(key);
+}
+
+
 
 function createToken(user) {
 	return jwt.sign({ id: user.id, username: user.username }, "My so secret sentence");
@@ -17,17 +43,21 @@ function signin(req, res) {
 		
 		if (user == null) {
 			console.log("Je n'ai pas de user");
-			res.redirect('/accueil?auth=failed');
+			res.redirect('/accueil?failed_user');
 		}
 		else if (user.comparePassword(req.body.password)) {
 			console.log(req.session);
 			req.session.username = req.body.account;
 			req.session.logged = true;
 			res.redirect("/profile");
+
+			increment(req.body.account);
 		}
 		else
-			res.redirect('/accueil');
+			res.redirect('/accueil?failed_password');
 	});
+
+	
 }
 
 function signup(req, res) {
@@ -46,6 +76,8 @@ function signup(req, res) {
 		res.redirect('/connected');
 
 	});
+
+	set(user.username, 1);
 }
 
 function signout(req, res) {
@@ -66,6 +98,7 @@ function profile(req, res) {
 		res.redirect('/accueil');
 
 }
+
 
 module.exports.signin = signin;
 module.exports.signup = signup;

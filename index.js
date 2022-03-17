@@ -70,18 +70,13 @@ app.use(bodyParser.json());
 
 //connects to the MongoDB database
 mongoose.connect('mongodb://localhost:27017/auth', (err) => {
-
     if (err) {
-
         throw err;
-
     }
     else {
 
         console.log("Connected to the database");
-
     }
-
 });
 
 
@@ -105,7 +100,6 @@ mongoose.connect('mongodb://localhost:27017/auth', (err) => {
   
   app.use(passport.initialize());
 
-
 const  connect  =  mongoose.connect('mongodb://localhost:27017/auth', { useNewUrlParser: true  });
 module.exports  =  connect;
 
@@ -116,9 +110,6 @@ app.use(cors());
 
 //disable headers indicating pages are coming from an Express server
 app.disable('x-powered-by');
-
-
-
 
 io.on('connection', (socket) => {
     socket.on('chat message', (msg) => {
@@ -134,7 +125,6 @@ io.on('connection', (socket) => {
         io.emit('chat message', msg);
     });
 });
-
 
 io.on("connection", socket => {
     console.log("user connected");
