@@ -26,6 +26,8 @@ async function increment(key){
 
 
 
+
+
 function createToken(user) {
 	return jwt.sign({ id: user.id, username: user.username }, "My so secret sentence");
 }
@@ -68,7 +70,10 @@ function signup(req, res) {
 		if (err)
 			throw err;
 
-		res.redirect('/connected');
+        req.session.username = req.body.account;
+		req.session.logged = true;
+
+		res.redirect('/profile');
 
 	});
 
@@ -98,3 +103,4 @@ module.exports.signin = signin;
 module.exports.signup = signup;
 module.exports.signout = signout;
 module.exports.profile = profile;
+module.exports.accueil = accueil;

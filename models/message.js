@@ -10,10 +10,6 @@ const messageSchema = new Schema({
     type: String,
     required: true
   },
-  receiver: {
-    type: String,
-    required: true
-  }
 }, { timestamps: true });
 
 module.exports = mongoose.model("Message", messageSchema);

@@ -41,22 +41,20 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({
 
     extended : true
-  
   }));
 
 app.use(session({
-
     resave: true,
     saveUninitialized: true,
     secret: 'mySecretKey',
     store: new MongoStore({ url: 'mongodb://localhost:27017/auth', autoReconnect: true})
-  
   }));
 
 app.get('/accueil', (req, res) => {
     res.sendFile(__dirname + '/view/accueil.html');
 });
 app.get('/connected', (req, res) => {
+    console.log(req);
     res.sendFile(__dirname + '/view/connected.html');
 });
 
@@ -111,40 +109,32 @@ app.use(cors());
 //disable headers indicating pages are coming from an Express server
 app.disable('x-powered-by');
 
+
 io.on('connection', (socket) => {
-    socket.on('chat message', (msg) => {
-        console.log('message: ' + msg);
+    socket.on('chat message', (msg, username) => {
+        io.emit('chat message', msg, username);
     });
 });
 
-// This will emit the event to all connected sockets
-io.emit('some event', { someProperty: 'some value', otherProperty: 'other value' });
-
-io.on('connection', (socket) => {
-    socket.on('chat message', (msg) => {
-        io.emit('chat message', msg);
-    });
-});
 
 io.on("connection", socket => {
     console.log("user connected");
-    socket.on("disconnect", function () {
-        console.log("user disconnected");
-    });
-    socket.on("chat message", function (msg) {
+    socket.on("chat message", function (msg, user) {
+        console.log("user: " + user);
         console.log("message: " + msg);
-        //broadcast message to everyone in port:5000 except yourself.
+        
         socket.broadcast.emit("received", { message: msg });
 
         //save chat to the database
         connect.then(db => {
             console.log("connected correctly to the server");
-
-            let chatMessage = new Message({ content: msg, sender: "Anonymous", receiver: "The goat" });
+            let chatMessage = new Message({ content: msg, sender: user});
             chatMessage.save();
         });
     });
 });
+
+
 
 
 server.listen(3000, () => {
