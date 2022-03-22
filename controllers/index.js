@@ -37,16 +37,11 @@ function signin(req, res) {
 	User.findOne({ username: req.body.account }, function (err, user) {
 		if (err)
 			throw err;
-
-		console.log(req.session);
-		console.log(req.body);
-		
 		if (user == null) {
 			console.log("Je n'ai pas de user");
 			res.redirect('/accueil?failed_user');
 		}
 		else if (user.comparePassword(req.body.password)) {
-			console.log(req.session);
 			req.session.username = req.body.account;
 			req.session.logged = true;
 			res.redirect("/profile");
@@ -90,10 +85,9 @@ function signout(req, res) {
 
 function profile(req, res) {
 
-	console.log("COUCOU")
-
+		console.log(req.session.username);
 	if (req.session.logged)
-		res.redirect("/connected");
+		res.redirect("/connected?" + req.session.username);
 	else
 		res.redirect('/accueil');
 
