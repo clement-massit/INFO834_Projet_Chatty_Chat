@@ -1,11 +1,11 @@
 # INFO834_Projet_Chatty_Chat  
 
 
-## About this project
+## About this project 💡 
 
 The main objectives of this project are to create a chat between users using soket.io, NodeJS, MongoDB and Redis.
 
-## How to install  
+## How to install 🔧 
 
 1. Clone the repository  
 ```
@@ -16,7 +16,7 @@ git clone https://github.com/clement-massit/INFO834_Projet_Redis
 npm install 
 ```
 
-## How to run the app  
+## How to run the app  🏃
 1. Create a folder named "data" (for Mongod storage)  
 
 2. Launch a mongod server  
@@ -31,7 +31,7 @@ node index.js
 ``` 
 5. Go to [localhost:3000/accueil](http://localhost:3000/accueil)
 
-## What the app can do 
+## What the app can do 🔍
 
 When launching the app, you are on the accueil page. This page allows you to sign in if you already have an account, or to sign up if you don't.  
 The app can handle 3 types of errors :  
