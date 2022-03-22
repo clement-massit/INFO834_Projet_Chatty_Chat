@@ -1,5 +1,6 @@
 # INFO834_Projet_Chatty_Chat  
 
+**Clément Massit & Gabriel Forray**
 
 ## About this project 💡 
 
