@@ -9,7 +9,7 @@ The main objectives of this project are to create a chat between users using sok
 
 1. Clone the repository  
 ```
-git clone https://github.com/clement-massit/INFO834_Projet_Redis
+git clone https://github.com/clement-massit/INFO834_Projet_Chatty_Chat
 ```  
 2. Install dependencies  
 ```
